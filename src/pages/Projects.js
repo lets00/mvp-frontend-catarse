@@ -30,7 +30,7 @@ export default function Projects() {
             case "date":
                 setProjects(projects.sort((a, b) => new Date(a.finnish_date) - new Date(b.finnish_date)))
                 break
-            default: console.log("default"); setProjects(projects)
+            default: setProjects(projects)
         }
     }
     return (

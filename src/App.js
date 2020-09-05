@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Projects from './pages/Projects';
+import Login from './pages/Login';
 
 function App() {
   const [login, setLogin] = useState({ user_id: '', jwt: '' })
@@ -17,12 +18,13 @@ function App() {
   return (
     <div>
       <Router>
-        <Header isAuth={true} logout={logout} />
+        <Header isAuth={login['jwt']} logout={logout} />
         <Switch>
           <Route path="/" exact>
             <Projects />
           </Route>
           <Route path="/login" exact>
+            <Login userLogged={userLogged}/>
           </Route>
           <Route path="/project/:id" exact>
           </Route>
