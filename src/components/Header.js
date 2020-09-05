@@ -24,7 +24,7 @@ export default function Header(props) {
                         </div>
                     </form>
                 </div>
-                {props.isAuth ? <button className="btn btn-danger" onClick={props.logout}>Logout</button> : <Link className="btn btn-primary" to='/login'>Login</Link> }                
+                {props.isAuth ? <button className="btn btn-danger" onClick={props.logout}>Logout</button> : <Link className="btn btn-primary" to='/login'>Login</Link>}
             </nav>
         </>
     )
