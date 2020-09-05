@@ -10,6 +10,17 @@ async function getProjectById(id) {
     return req.json()
 }
 
+async function removeProjectById(token, project_id) {
+    const req = await fetch(`${API}/project/${project_id}`, {
+        method: 'DELETE',
+        headers: {
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    })
+    return req.status
+}
+
 async function getProjectByUserId(user_id) {
     const req = await fetch(`${API}/user/${user_id}/projects`)
     return req.json()
@@ -62,6 +73,7 @@ export {
     getProjects,
     getProjectById,
     getProjectByUserId,
+    removeProjectById,
     getSupportById,
     getUserById,
     login,

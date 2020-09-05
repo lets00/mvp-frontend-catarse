@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useHistory } from "react-router-dom";
-import { getProjectById, getSupportById, getUserById, getProjectByUserId, donate } from '../api/apiService'
+import { getProjectById, getSupportById, getUserById, getProjectByUserId, donate, removeProjectById } from '../api/apiService'
 import { formatMoney } from '../helpers/format'
 
 export default function Project(props) {
@@ -33,6 +33,15 @@ export default function Project(props) {
         return projectDate > actualDate
     }
 
+    const removeProject = async () => {
+        const result = await removeProjectById(props.login.jwt, id)
+        if (result === 200){
+            history.push('/')
+        } else {
+            console.log('Not removed', result)
+        }
+    }
+
     useEffect(() => {
         const updateProject = async () => {
             setProject(await getProjectById(id))
@@ -59,7 +68,7 @@ export default function Project(props) {
         const updateUserProject = async () => {
             if (props.login.jwt !== '') {
                 const my_projects = await getProjectByUserId(props.login.user_id)
-                const find_project = [my_projects.find((user_project) => user_project.id === +id)]
+                const find_project = my_projects.find((user_project) => user_project.id === +id)
                 if (find_project) {
                     setIsUserProject(true)
                 }
@@ -109,7 +118,7 @@ export default function Project(props) {
                                 {isUserProject ? (
                                     <div className="justify-content-center d-flex mt-2">
                                         <button className="btn btn-warning mr-2">Atualizar Projeto</button>
-                                        <button className="btn btn-danger">Apagar Projeto</button>
+                                        <button className="btn btn-danger" onClick={removeProject} >Apagar Projeto</button>
                                     </div>) : null}
                             </div>
                         </div>
@@ -127,7 +136,6 @@ export default function Project(props) {
                         <h2>Colaboradores</h2>
                         <ul>
                             {collaborator.map((col, id) => (<li key={id}>{col}</li>))}
-
                         </ul>
                     </div>
                 </div>
