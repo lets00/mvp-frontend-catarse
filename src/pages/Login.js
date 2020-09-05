@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import logo from '../images/logo_big.png'
+import logo from '../images/catarse.png'
 import { useHistory } from 'react-router-dom'
 import { login } from '../api/apiService'
 
