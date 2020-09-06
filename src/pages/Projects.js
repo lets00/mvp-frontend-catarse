@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import ProjectCard from '../components/ProjectCard'
+import { getProjects } from '../api/apiService'
 
-export default function Projects() {
-
+export default function Projects(props) {
     const [projects, setProjects] = useState([])
+    const [title, setTitle] = useState('')
+
+    // const debounce = (callback, delay) => {
+    //     let timer;
+    //     return (...args) => {
+    //         clearTimeout(timer);
+    //         timer = setTimeout(() => callback(...args), delay)
+    //     }
+    // }
 
     useEffect(() => {
-        const getData = async () => {
-            const req = await fetch('http://localhost:4000/v1/project')
-            const data = await req.json()
-            const sorted = data.sort((a, b) => new Date(a.finnish_date) - new Date(b.finnish_date))
-            setProjects(sorted)
+        const getProjectsTitle = async () => {
+            setTitle(props.title)
+            if (!props.title) {
+                setProjects(await getProjects())
+            } else {
+                setProjects(await getProjects(props.title))
+            }
         }
-        getData()
-    }, [])
+        getProjectsTitle()
+
+    }, [props.title])
 
     useEffect(() => {
         console.log(projects)
@@ -45,7 +57,7 @@ export default function Projects() {
 
             </div>
             <div className="container">
-                <p> {projects.length} projetos encontrados</p>
+                <p> {projects.length} projetos encontrados {title ? `com título ${title}` : null}</p>
                 <div className="row">
                     {projects.map(project => {
                         return (

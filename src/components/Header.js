@@ -17,7 +17,7 @@ export default function Header(props) {
                     <a className="ml-4 mr-4 mt-2" href="/">Comece seu projeto</a>
                     <form className="form-inline">
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Título do projeto" />
+                            <input type="text" className="form-control" placeholder="Título do projeto" defaultValue="" onChange={(e) => { props.updateTitle(e.target.value)}}/>
                             <div className="input-group-append">
                                 <button type="button" className="btn btn-outline-secondary"> <FontAwesomeIcon icon={faEye} /></button>
                             </div>

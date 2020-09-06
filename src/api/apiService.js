@@ -1,7 +1,7 @@
 const API = "http://localhost:4000/v1"
 
-async function getProjects(limit = 100, skip = 0) {
-    const req = await fetch(`${API}/project?limit=${limit}&skip=${skip}`)
+async function getProjects(title = '', limit = 100, skip = 0) {
+    const req = await fetch(`${API}/project?title=${title}&limit=${limit}&skip=${skip}`)
     return req.json()
 }
 

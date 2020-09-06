@@ -8,9 +8,14 @@ import Update from './pages/Update';
 
 function App() {
   const [login, setLogin] = useState({ user_id: '', jwt: '' })
+  const [title, setTitle] = useState('')
 
   const userLogged = user_login => {
     setLogin(user_login);
+  }
+
+  const updateTitle = title => {
+    setTitle(title)
   }
 
   const logout = () => {
@@ -20,10 +25,10 @@ function App() {
   return (
     <div>
       <Router>
-        <Header isAuth={login['jwt']} logout={logout} />
+        <Header isAuth={login['jwt']} logout={logout} title={title} updateTitle={updateTitle}/>
         <Switch>
           <Route path="/" exact>
-            <Projects />
+            <Projects title={title}/>
           </Route>
           <Route path="/login" exact>
             <Login userLogged={userLogged} />
