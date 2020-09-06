@@ -1,4 +1,4 @@
-const API = `${process.env.MVP_BACKEND_CATARSE}`
+const API = `https://mvp-backend-catarse.herokuapp.com/v1`
 
 async function getProjects(title = '', limit = 100, skip = 0) {
     const req = await fetch(`${API}/project?title=${title}&limit=${limit}&skip=${skip}`)
