@@ -30,7 +30,7 @@ export default function Projects(props) {
     const changeSelectOrder = (e) => {
         switch (e.target.value) {
             case "title":
-                setProjects(projects.sort((a, b) => a.title - b.title).splice(0, projects.length))
+                setProjects(projects.sort((a, b) => a.title.localeCompare(b.title)).splice(0, projects.length))
                 break
             case "meta":
                 setProjects(projects.sort((a, b) => +(a.goal) - +(b.goal)).splice(0, projects.length))
