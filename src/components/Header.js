@@ -14,7 +14,7 @@ export default function Header(props) {
                         <img src={logo} alt="Logo catarse" height="30" className="d-inline-block align-top"></img>
                     </Link>
 
-                    <Link to="/" className="ml-4 mr-4 mt-2" style={stylesText}>Comece seu projeto</Link>
+                    <Link to="/new" className="ml-4 mr-4 mt-2" style={stylesText}>Comece seu projeto</Link>
                     <form className="form-inline">
                         <div className="input-group mb-3">
                             <input type="text" className="form-control" placeholder="Título do projeto" defaultValue="" onChange={(e) => { props.updateTitle(e.target.value) }} />

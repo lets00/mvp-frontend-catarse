@@ -5,6 +5,7 @@ import Projects from './pages/Projects';
 import Login from './pages/Login';
 import Project from './pages/Project';
 import Update from './pages/Update';
+import New from './pages/New';
 
 function App() {
   const [login, setLogin] = useState({ user_id: '', jwt: '' })
@@ -25,10 +26,10 @@ function App() {
   return (
     <div>
       <Router>
-        <Header isAuth={login['jwt']} logout={logout} title={title} updateTitle={updateTitle}/>
+        <Header isAuth={login['jwt']} logout={logout} title={title} updateTitle={updateTitle} />
         <Switch>
           <Route path="/" exact>
-            <Projects title={title}/>
+            <Projects title={title} />
           </Route>
           <Route path="/login" exact>
             <Login userLogged={userLogged} />
@@ -37,7 +38,10 @@ function App() {
             <Project login={login} />
           </Route>
           <Route path="/project-edit/:id" exact>
-            <Update login={login}/>
+            <Update login={login} />
+          </Route>
+          <Route path="/new" exact>
+            <New login={login} />
           </Route>
         </Switch>
       </Router>

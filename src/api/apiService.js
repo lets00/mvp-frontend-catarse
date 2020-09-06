@@ -1,5 +1,19 @@
 const API = `https://mvp-backend-catarse.herokuapp.com/v1`
 
+async function createProject(token, project) {
+    const req = await fetch(`${API}/project`, {
+        method: 'POST',
+        body: JSON.stringify({
+            ...project
+        }),
+        headers: {
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    })
+    return req.status
+}
+
 async function getProjects(title = '', limit = 100, skip = 0) {
     const req = await fetch(`${API}/project?title=${title}&limit=${limit}&skip=${skip}`)
     return req.json()
@@ -85,6 +99,7 @@ async function donate(token, project_id, value) {
 }
 
 export {
+    createProject,
     getProjects,
     getProjectById,
     getProjectByUserId,
