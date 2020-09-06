@@ -50,8 +50,6 @@ export default function Update(props) {
         const result = await updateProjectById(props.login.jwt, id, projectUpdated)
         if (result === 200) {
             history.push('/')
-        } else {
-            console.log('Errrrou', result)
         }
     }
 

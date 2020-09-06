@@ -1,4 +1,4 @@
-const API = "http://localhost:4000/v1"
+const API = `${process.env.MVP_BACKEND_CATARSE}`
 
 async function getProjects(title = '', limit = 100, skip = 0) {
     const req = await fetch(`${API}/project?title=${title}&limit=${limit}&skip=${skip}`)
