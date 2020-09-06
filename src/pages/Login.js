@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import logo from '../images/catarse.png'
 import { useHistory } from 'react-router-dom'
 import { login } from '../api/apiService'
+import { toast, ToastContainer } from 'react-toastify'
 
 export default function Login(props) {
     const [email, setEmail] = useState('')
@@ -22,7 +23,15 @@ export default function Login(props) {
             props.userLogged(json)
             history.goBack()
         } catch (e) {
-            console.log(e)
+            toast.error(`Login/Senha incorretos. Erro: ${e}`, {
+                position: "top-right",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     }
 
@@ -53,6 +62,7 @@ export default function Login(props) {
                     </form>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     )
 }

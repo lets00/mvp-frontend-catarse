@@ -65,7 +65,7 @@ async function login(username, password) {
     if (req.status === 200) {
         return await req.json()
     } else {
-        throw new Error(`Status code: ${req.status}`)
+        throw new Error(`${req.status}`)
     }
 }
 

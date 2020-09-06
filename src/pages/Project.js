@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useHistory, Link } from "react-router-dom";
 import { getProjectById, getSupportById, getUserById, getProjectByUserId, donate, removeProjectById } from '../api/apiService'
 import { formatMoney } from '../helpers/format'
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function Project(props) {
     const [project, setProject] = useState({})
@@ -35,10 +36,18 @@ export default function Project(props) {
 
     const removeProject = async () => {
         const result = await removeProjectById(props.login.jwt, id)
-        if (result === 200){
+        if (result === 200) {
             history.push('/')
         } else {
-            console.log('Not removed', result)
+            toast.error(`Não é possível remover o projeto. Erro: ${result}`, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     }
 
@@ -139,6 +148,7 @@ export default function Project(props) {
                         </ul>
                     </div>
                 </div>
+                <ToastContainer />
             </section>
         </>
     )

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom';
 import { getProjectByUserId, updateProjectById } from '../api/apiService';
 import { formatMonth } from '../helpers/format';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 export default function Update(props) {
     const history = useHistory()
@@ -50,6 +52,16 @@ export default function Update(props) {
         const result = await updateProjectById(props.login.jwt, id, projectUpdated)
         if (result === 200) {
             history.push('/')
+        } else {
+            toast.error(`Não foi possível atualizar as informações. Por favor verifique os dados passados. Erro: ${result}`, {
+                position: "top-right",
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     }
 
@@ -79,6 +91,7 @@ export default function Update(props) {
                 </div>
                 {valid ? <button type="submit" className="btn btn-primary" onClick={(e) => { e.preventDefault(); updateData() }}>Atualizar projeto</button> : null}
             </form>
+            <ToastContainer />
         </div>
     )
 }
