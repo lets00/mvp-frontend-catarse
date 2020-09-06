@@ -57,7 +57,7 @@ export default function Projects(props) {
                 <div className="row">
                     {projects.map(project => {
                         return (
-                            <div key={project.id} className="col-4 mt-4">
+                            <div key={project.id} className="col-12 col-md-4 mt-4">
                                 <ProjectCard
                                     id={project.id}
                                     image_url={project.image_url}

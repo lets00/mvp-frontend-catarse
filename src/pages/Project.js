@@ -99,10 +99,10 @@ export default function Project(props) {
                     </div>
                     <div className="mt-4 mb-4"></div>
                     <div className="row">
-                        <div className="col-8">
+                        <div className="col-12 col-md-8 mb-2">
                             <img className="img-fluid" src={project.image_url} alt={`Project: ${project.title}`} />
                         </div>
-                        <div className="col-4">
+                        <div className="col-12 col-md-4">
                             <div className="card bg-secondary">
                                 <div className="card-body text-left">
                                     <div className="d-flex">
