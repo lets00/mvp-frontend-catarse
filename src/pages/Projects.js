@@ -44,7 +44,7 @@ export default function Projects(props) {
     return (
         <>
             <div className="d-flex pb-4 pt-4 text-center justify-content-center" style={{ backgroundColor: "#503a80" }}>
-                <h2>Quero ordernar por </h2>
+                <h2 style={{fontWeight: 400, color: "white"}}>Quero ordernar por </h2>
                 <select className="ml-2" onChange={(e) => changeSelectOrder(e)}>
                     <option value="title">Título</option>
                     <option value="meta">Meta de arrecadação</option>
