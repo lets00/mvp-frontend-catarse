@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 export default function Project(props) {
     const [project, setProject] = useState({})
     const [support, setSupport] = useState([])
+    const [username, setUsername] = useState('')
     const [collaborator, setCollaborator] = useState([])
     const [donnation, setDonnation] = useState('0.01')
     const [isUserProject, setIsUserProject] = useState(false)
@@ -60,6 +61,14 @@ export default function Project(props) {
     }, [id])
 
     useEffect(() => {
+        const updateUser = async () => {
+            const user = await getUserById(project.user_id)
+            setUsername(user['username'])
+        }
+        updateUser()
+    }, [project.user_id])
+
+    useEffect(() => {
         const updateCollaborators = async () => {
             let collaborator_id = support.map((sup) => sup.user_id)
             collaborator_id = Array.from(new Set(collaborator_id))
@@ -95,6 +104,7 @@ export default function Project(props) {
                     <div className="row">
                         <div className="col-12">
                             <h1>{project.title}</h1>
+                            <p>por {username}</p>
                         </div>
                     </div>
                     <div className="mt-4 mb-4"></div>
