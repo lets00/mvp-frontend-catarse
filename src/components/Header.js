@@ -14,10 +14,10 @@ export default function Header(props) {
                         <img src={logo} alt="Logo catarse" height="30" className="d-inline-block align-top"></img>
                     </Link>
 
-                    <Link to="/" className="ml-4 mr-4 mt-2" href="/">Comece seu projeto</Link>
+                    <Link to="/" className="ml-4 mr-4 mt-2" style={stylesText}>Comece seu projeto</Link>
                     <form className="form-inline">
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Título do projeto" defaultValue="" onChange={(e) => { props.updateTitle(e.target.value)}}/>
+                            <input type="text" className="form-control" placeholder="Título do projeto" defaultValue="" onChange={(e) => { props.updateTitle(e.target.value) }} />
                             <div className="input-group-append">
                                 <button type="button" className="btn btn-outline-secondary"> <FontAwesomeIcon icon={faEye} /></button>
                             </div>
@@ -28,4 +28,13 @@ export default function Header(props) {
             </nav>
         </>
     )
+}
+
+const stylesText = {
+    padding: "9px 17px",
+    borderRadius: "4px",
+    color: "#f1f2f3",
+    fontSize: "15px",
+    fontWeight: 300,
+    textDecoration: "none",
 }
