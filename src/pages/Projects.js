@@ -27,20 +27,16 @@ export default function Projects(props) {
 
     }, [props.title])
 
-    useEffect(() => {
-        console.log(projects)
-    }, [projects])
-
     const changeSelectOrder = (e) => {
         switch (e.target.value) {
             case "title":
-                setProjects(projects.sort((a, b) => a.title - b.title))
+                setProjects(projects.sort((a, b) => a.title - b.title).splice(0, projects.length))
                 break
             case "meta":
-                setProjects(projects.sort((a, b) => +(a.goal) - +(b.goal)))
+                setProjects(projects.sort((a, b) => +(a.goal) - +(b.goal)).splice(0, projects.length))
                 break
             case "date":
-                setProjects(projects.sort((a, b) => new Date(a.finnish_date) - new Date(b.finnish_date)))
+                setProjects(projects.sort((a, b) => new Date(a.finnish_date) - new Date(b.finnish_date)).splice(0, projects.length))
                 break
             default: setProjects(projects)
         }
