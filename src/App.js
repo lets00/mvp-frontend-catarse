@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Projects from './pages/Projects';
 import Login from './pages/Login';
 import Project from './pages/Project';
+import Update from './pages/Update';
 
 function App() {
   const [login, setLogin] = useState({ user_id: '', jwt: '' })
@@ -31,6 +32,7 @@ function App() {
             <Project login={login} />
           </Route>
           <Route path="/project-edit/:id" exact>
+            <Update login={login}/>
           </Route>
         </Switch>
       </Router>

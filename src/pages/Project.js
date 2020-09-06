@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { getProjectById, getSupportById, getUserById, getProjectByUserId, donate, removeProjectById } from '../api/apiService'
 import { formatMoney } from '../helpers/format'
 
@@ -117,7 +117,7 @@ export default function Project(props) {
 
                                 {isUserProject ? (
                                     <div className="justify-content-center d-flex mt-2">
-                                        <button className="btn btn-warning mr-2">Atualizar Projeto</button>
+                                        <Link to={`/project-edit/${id}`} className="btn btn-warning mr-2">Atualizar Projeto</Link>
                                         <button className="btn btn-danger" onClick={removeProject} >Apagar Projeto</button>
                                     </div>) : null}
                             </div>

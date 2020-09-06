@@ -1,7 +1,7 @@
 const API = "http://localhost:4000/v1"
 
-async function getProjects() {
-    const req = await fetch(`${API}/project`)
+async function getProjects(limit = 100, skip = 0) {
+    const req = await fetch(`${API}/project?limit=${limit}&skip=${skip}`)
     return req.json()
 }
 
@@ -20,6 +20,21 @@ async function removeProjectById(token, project_id) {
     })
     return req.status
 }
+
+async function updateProjectById(token, project_id, update_field) {
+    const req = await fetch(`${API}/project/${project_id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            ...update_field
+        }),
+        headers: {
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    })
+    return req.status
+}
+
 
 async function getProjectByUserId(user_id) {
     const req = await fetch(`${API}/user/${user_id}/projects`)
@@ -74,6 +89,7 @@ export {
     getProjectById,
     getProjectByUserId,
     removeProjectById,
+    updateProjectById,
     getSupportById,
     getUserById,
     login,
